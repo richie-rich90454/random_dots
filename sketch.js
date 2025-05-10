@@ -1,34 +1,38 @@
 let xF=[];
 let yF=[];
+let ready=false;
+let N=1000;
 function setup(){
     createCanvas(400, 400);
     background(0);
     stroke("#FFF");
-    for (let i=0;i<1000;i++){
-        xF[i]=Math.random()*400;
-        yF[i]=Math.random()*400;
+    for (let i=0;i<N;i++){
+        xF[i]=random(width);
+        yF[i]=random(height);
         point(xF[i], yF[i]);
     }
-    for (let i=0;i<1000;i++){
+    for (let i=0;i<N;i++){
         point(changeX(xF[i]), changeY(yF[i]));
     }
+    ready=true;
+    noLoop();
 }
 function reDraw1(){
     background(0);
-    for (let i=0;i<1000;i++){
+    for (let i=0;i<N;i++){
         point(xF[i], yF[i]);
     }
-    for (let i=0;i<1000;i++){
+    for (let i=0;i<N;i++){
         point(changeX(xF[i]+mouseX/50), changeY(yF[i]+mouseY/50));
     }
 }
 function reDraw2(){
     background(0);
-    for (let i=0;i<1000;i++){
+    for (let i=0;i<N;i++){
         point(xF[i], yF[i]);
     }
-    for (let i=0;i<1000;i++){
-        point(changeX(xF[i]+Math.pow(mouseX, 0.5)), changeY(yF[i]+Math.pow(mouseY*2, 0.5)));
+    for (let i=0;i<N;i++){
+        point(changeX(xF[i]+sqrt(mouseX)), changeY(yF[i]+sqrt(mouseY*2)));
     }
 }
 function changeX(x){
@@ -38,10 +42,12 @@ function changeY(y){
     return y*2;
 }
 function mouseMoved(){
-    console.log(mouseX+" "+mouseY);
-    reDraw1();
+    if (ready){
+        reDraw1();
+    }
 }
 function mouseDragged(){
-    console.log(mouseX+" "+mouseY);
-    reDraw2();
+    if (ready){
+        reDraw2();
+    }
 }
