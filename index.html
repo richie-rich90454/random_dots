@@ -2,8 +2,15 @@
 <html lang="en">
     <title>Random P5 JS Dot Program</title>
     <head>
-        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/p5.js"></script> -->
-        <script src="p5.js"></script>
+        <script>
+            function loadLocalP5JS(){
+                console.log("CDN failed, loading with local p5.js instead.");
+                let localP5=document.createElement("script");
+                localP5.src="p5.js";
+                document.head.appendChild(localP5);
+            }
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/p5.js" onerror="loadLocalP5JS()"></script>
         <style>
             html, body{
                 margin: 0;
