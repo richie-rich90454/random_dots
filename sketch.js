@@ -3,7 +3,7 @@ let yF=[];
 let ready=false;
 let N=1000;
 function setup(){
-    createCanvas(400, 400);
+    createCanvas(windowWidth, windowHeight);
     background(0);
     stroke("#FFF");
     for (let i=0;i<N;i++){
@@ -49,5 +49,17 @@ function mouseMoved(){
 function mouseDragged(){
     if (ready){
         reDraw2();
+    }
+}
+function windowResized(){
+    resizeCanvas(windowWidth, windowHeight);
+    background(0);
+    for (let i=0;i<N;i++){
+        xF[i]=random(width);
+        yF[i]=random(height);
+        point(xF[i], yF[i]);
+    }
+    for (let i=0;i<N;i++){
+        point(changeX(xF[i]), changeY(yF[i]));
     }
 }
